@@ -24,4 +24,4 @@ The Qt Creator software was new to work with. It took some time to understand an
 1. Bold- the selected text, as well as new text that is entered, is displayed in bold (shortcut- Ctrl+B)
 2. Superscript- the selected text, as well as new text that is entered, is displayed in superscript (shortcut- Ctrl+Shift+=)
 3. Subscript- the selected text, as well as new text that is entered, is displayed in subscript (shortcut- Ctrl+Shift+-)
-4. A dialog box with the resume is displayed when the About Me pushbutton is clicked.
+4. A dialog box with the resume is displayed when the About Me push button is clicked.
