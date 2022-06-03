@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>1.jpg</file>
-        <file>bold.png</file>
-        <file>subscript.png</file>
-        <file>superscript.png</file>
-        <file>aboutme.png</file>
-    </qresource>
-</RCC>
