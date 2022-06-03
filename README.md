@@ -17,7 +17,7 @@ $ make
 $ ./qpadfinal
 ```
 #### What has been done:
-A text-editing app is created using Qt with the features like New, Open, Save and Save As under the File menu option. Other functionalities like Bold, Superscript, and Subscript are included under the Format menu option. Then under More option, when the About Me option is triggered, it opens a dialog box displaying the resume. All the above functions are displayed as icons on the tool bar for easy access.
+A text-editing app is created using Qt with the features like New, Open, Save, and Save As under the File menu option. Other functionalities like Bold, Superscript, and Subscript are included under the Format menu option. Then under the More option, when the About Me option is triggered, it opens a dialog box displaying the resume. All the above functions are displayed as icons on the toolbar for easy access.
 #### Issues/challenges:
 The Qt Creator software was new to work with. It took some time to understand and get familiar with its widgets and functions. Because of the new environment, there were a few edge cases and bugs that needed some time to resolve.
 #### Features:
