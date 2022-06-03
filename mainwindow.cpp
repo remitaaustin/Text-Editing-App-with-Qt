@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //this->setCentralWidget(ui->textEdit);
+    this->setCentralWidget(ui->textEdit);
 }
 
 MainWindow::~MainWindow()
@@ -15,10 +15,75 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_actionNew_triggered()
+{
+    mFilename = "";
+    ui->textEdit->setPlainText("");
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QString file = QFileDialog::getOpenFileName(this,"Open a file");
+    if(!file.isEmpty())
+    {
+        QFile sFile(file);
+        if(sFile.open(QFile::ReadOnly | QFile::Text))
+        {
+            mFilename = file;
+            QTextStream in(&sFile);
+            QString text = in.readAll();
+            sFile.close();
+            ui->textEdit->setPlainText(text);
+        }
+    }
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    if(mFilename=="")
+    {
+        on_actionSave_As_triggered();
+        return;
+    }
+    QFile sFile(mFilename);
+    if(sFile.open(QFile::WriteOnly | QFile::Text))
+    {
+        QTextStream out(&sFile);
+        out << ui->textEdit->toPlainText();
+        sFile.flush();
+        sFile.close();
+    }
+}
+
+void MainWindow::on_actionSave_As_triggered()
+{
+    QString file = QFileDialog::getSaveFileName(this,"Open a file");
+    if(!file.isEmpty())
+    {
+        mFilename = file;
+        on_actionSave_triggered();
+    }
+}
+
 void MainWindow::on_actionBold_triggered(bool checked)
 {
     checked ? ui->textEdit->setFontWeight(QFont::Bold) :
               ui->textEdit->setFontWeight(QFont::Normal);
+}
+
+void MainWindow::on_actionItalic_triggered(bool checked)
+{
+    QTextCharFormat format;
+    if(checked)
+    {
+        ui->textEdit->setFontItalic(checked);;
+    }
+    else
+    {
+        ui->textEdit->setFontItalic(checked);
+    }
+    ui->textEdit->textCursor().mergeCharFormat(format);
+    ui->textEdit->mergeCurrentCharFormat(format);
 }
 
 void MainWindow::on_actionSuperscript_triggered(bool checked)
@@ -40,22 +105,22 @@ void MainWindow::on_actionSuperscript_triggered(bool checked)
 void MainWindow::on_actionSubscript_triggered(bool checked)
 {
     QTextCharFormat format;
-        if(checked)
-        {
-            ui->actionSuperscript->setChecked(false);
-            format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
-        }
-        else
-        {
-            format.setVerticalAlignment(QTextCharFormat::AlignNormal);
-        }
-        ui->textEdit->textCursor().mergeCharFormat(format);
-        ui -> textEdit -> mergeCurrentCharFormat(format);
+    if(checked)
+    {
+        ui->actionSuperscript->setChecked(false);
+        format.setVerticalAlignment(QTextCharFormat::AlignSubScript);
+    }
+    else
+    {
+        format.setVerticalAlignment(QTextCharFormat::AlignNormal);
+    }
+    ui->textEdit->textCursor().mergeCharFormat(format);
+    ui -> textEdit -> mergeCurrentCharFormat(format);
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_actionAbout_Me_triggered()
 {
-    Dialog dialog;
-    dialog.setModal(true);
-    dialog.exec();
+    Dialog dbox;
+    dbox.setModal(true);
+    dbox.exec();
 }

@@ -7,7 +7,8 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-    QPixmap pm(":/1.jpg");
+    ui->setupUi(this);
+    QPixmap pm(":/images/resume.jpg");
     ui->label->setPixmap(pm);
     ui->label->setScaledContents(true);
     QScrollArea *scrollarea = new QScrollArea(this);
